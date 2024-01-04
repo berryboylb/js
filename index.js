@@ -281,9 +281,11 @@ function twoSum(nums, target) {
     const remainder = target - nums[i];
     const pairIndex = nums.indexOf(remainder);
     if (pairIndex !== -1 && pairIndex !== i) {
+      console.log([i, pairIndex]);
       return [i, pairIndex];
     }
   }
+  console.log(result)
   return result;
 }
 
