@@ -285,7 +285,37 @@ function twoSum(nums, target) {
       return [i, pairIndex];
     }
   }
-  console.log(result)
+  console.log(result);
+  return result;
+}
+
+function removeDuplicates(nums) {
+  const passed = {};
+  for (let i = 0; i < nums.length; i++) {
+    if (passed[String(nums[i])] in passed) {
+      nums[i] = "_";
+    } else {
+      passed[nums[i]] = nums[i];
+    }
+  }
+  nums.sort((a, b) => {
+    if (typeof a === "string") return 1;
+    if (typeof b === "string") return -1;
+    return a - b;
+  });
+  return Object.keys(passed).length;
+}
+
+function removeElement(nums, val) {
+  let result = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (val === nums[i]) {
+      nums[i] = "_";
+      continue;
+    }
+    result++;
+  }
+  nums.sort();
   return result;
 }
 
@@ -295,7 +325,9 @@ const main = () => {
   // nearestVowel("shopper");
   // isNumberPalindrome(10);
   // romanToInteger("MCMXCIV");
-  twoSum([2, 7, 11, 15], 9);
+  // twoSum([2, 7, 11, 15], 9);
+  removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]);
+  // removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
 };
 
 main();
