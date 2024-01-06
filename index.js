@@ -319,6 +319,19 @@ function removeElement(nums, val) {
   return result;
 }
 
+function search(haystack, needle) {
+  if (!haystack.includes(needle)) {
+    return -1;
+  }
+
+  for (let i = 0; i < haystack.length; i++) {
+    const str = haystack.substring(i, i + needle.length);
+    if (str === needle) {
+      return i;
+    }
+  }
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -326,8 +339,9 @@ const main = () => {
   // isNumberPalindrome(10);
   // romanToInteger("MCMXCIV");
   // twoSum([2, 7, 11, 15], 9);
-  removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]);
+  // removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]);
   // removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
+  search("sadbutsad", "sad");
 };
 
 main();
