@@ -323,13 +323,26 @@ function search(haystack, needle) {
   if (!haystack.includes(needle)) {
     return -1;
   }
-
   for (let i = 0; i < haystack.length; i++) {
     const str = haystack.substring(i, i + needle.length);
     if (str === needle) {
       return i;
     }
   }
+}
+
+function searchInsert(nums, target) {
+  let output = 0;
+  if (nums.includes(target)) {
+    output = nums.indexOf(target);
+  } else {
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] < target) {
+        output = i + 1;
+      }
+    }
+  }
+  return output
 }
 
 const main = () => {
@@ -341,7 +354,8 @@ const main = () => {
   // twoSum([2, 7, 11, 15], 9);
   // removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]);
   // removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
-  search("sadbutsad", "sad");
+  // search("sadbutsad", "sad");
+  searchInsert([3, 6, 7, 8, 10], 5);
 };
 
 main();
