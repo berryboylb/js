@@ -342,7 +342,17 @@ function searchInsert(nums, target) {
       }
     }
   }
-  return output
+  return output;
+}
+
+function lengthOfLastWord(s) {
+  const words = s.split(" ");
+  for (let i = words.length - 1; i >= 0; i--) {
+    if (words[i] !== "") {
+      return words[i].length;
+    }
+    continue;
+  }
 }
 
 const main = () => {
@@ -355,7 +365,8 @@ const main = () => {
   // removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]);
   // removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
   // search("sadbutsad", "sad");
-  searchInsert([3, 6, 7, 8, 10], 5);
+  // searchInsert([3, 6, 7, 8, 10], 5);
+  lengthOfLastWord("luffy is still joyboy");
 };
 
 main();
