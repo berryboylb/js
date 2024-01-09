@@ -355,6 +355,20 @@ function lengthOfLastWord(s) {
   }
 }
 
+function plusOne(digits) {
+  for (let i = digits.length - 1; i >= 0; i--) {
+    if (digits[i] < 9) {
+      digits[i]++;
+      return digits;
+    }
+
+    digits[i] = 0;
+  }
+  digits.unshift(1);
+
+  return digits;
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -366,7 +380,8 @@ const main = () => {
   // removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
   // search("sadbutsad", "sad");
   // searchInsert([3, 6, 7, 8, 10], 5);
-  lengthOfLastWord("luffy is still joyboy");
+  // lengthOfLastWord("luffy is still joyboy");
+  plusOne([2, 9, 9]);
 };
 
 main();
