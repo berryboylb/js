@@ -79,16 +79,16 @@
 //   .digest("hex");
 // console.log(hash);
 
-// function isPalindrome(s) {
-//   const string = s
-//     .toLowerCase()
-//     .replace(/[^a-zA-Z0-9]/g, "");
-//   let reversedString = ''
-//   for (let i = string.length; i >= string.length, i--;){
-//     reversedString += string[i]
-//   }
-//   return string === reversedString;
-// }
+function isPalindrome(s) {
+  const string = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+  for (let i = 0; i < string.length; i++) {
+    console.log(string[i], string[string.length - i - 1]);
+    // if (string[i] !== string[string.length - i - 1]) {
+    //   return false
+    // }
+  }
+  return true;
+}
 
 function Sum(num) {
   const arr = [];
@@ -356,17 +356,46 @@ function lengthOfLastWord(s) {
 }
 
 function plusOne(digits) {
+  console.log(digits.reverse());
   for (let i = digits.length - 1; i >= 0; i--) {
     if (digits[i] < 9) {
       digits[i]++;
       return digits;
     }
-
     digits[i] = 0;
   }
-  digits.unshift(1);
 
-  return digits;
+  return [1, ...digits];
+}
+
+function addBinary(a, b) {
+  const longest = a.length > b.length ? a.length : b.length;
+  let res = "";
+  let rem = "0";
+  for (let i = longest - 1; i >= 0; i--) {
+    const currA = a[i] || "0";
+    const currB = b[i] || "0";
+    if (
+      currA + currB + rem === "100" ||
+      currA + currB + rem === "010" ||
+      currA + currB + rem === "001"
+    ) {
+      rem = "0";
+      res = "1" + res;
+    } else if (
+      currA + currB + rem === "110" ||
+      currA + currB + rem === "011" ||
+      currA + currB + rem === "101"
+    ) {
+      rem = "1";
+      res = "0" + res;
+    } else if (currA + currB + rem === "111") {
+      rem = "1";
+      res = "1" + res;
+    }
+  }
+  if (rem === "1") return console.log(rem + res);
+  console.log(res);
 }
 
 const main = () => {
@@ -381,7 +410,9 @@ const main = () => {
   // search("sadbutsad", "sad");
   // searchInsert([3, 6, 7, 8, 10], 5);
   // lengthOfLastWord("luffy is still joyboy");
-  plusOne([2, 9, 9]);
+  // plusOne([2, 9, 9]);
+  // addBinary("11", "1");
+  isPalindrome("race a car");
 };
 
 main();
