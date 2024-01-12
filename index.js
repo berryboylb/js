@@ -401,11 +401,13 @@ function addBinary(a, b) {
 function singleNumber(nums) {
   const arr = []
   for (let i=0; i < nums.length; i++) {
-    const newNums = nums.filter(item => item == nums[i])
-    if (newNums.length == 1) {
-      return nums[i]
+    if (arr.includes(nums[i])) {
+      arr.splice(nums.indexOf(nums[i]), 1)
+    } else {
+      arr.push(nums[i])
     }
   }
+  console.log(arr[0])
 }
 
 const main = () => {
