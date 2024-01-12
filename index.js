@@ -398,6 +398,16 @@ function addBinary(a, b) {
   console.log(res);
 }
 
+function singleNumber(nums) {
+  const arr = []
+  for (let i=0; i < nums.length; i++) {
+    const newNums = nums.filter(item => item == nums[i])
+    if (newNums.length == 1) {
+      return nums[i]
+    }
+  }
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -412,7 +422,8 @@ const main = () => {
   // lengthOfLastWord("luffy is still joyboy");
   // plusOne([2, 9, 9]);
   // addBinary("11", "1");
-  isPalindrome("race a car");
+  // isPalindrome("race a car");
+  singleNumber([2, 2, 1]);
 };
 
 main();
