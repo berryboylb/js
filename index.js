@@ -399,15 +399,16 @@ function addBinary(a, b) {
 }
 
 function singleNumber(nums) {
-  const arr = []
-  for (let i=0; i < nums.length; i++) {
-    if (arr.includes(nums[i])) {
-      arr.splice(nums.indexOf(nums[i]), 1)
-    } else {
-      arr.push(nums[i])
-    }
+  if (nums.length === 1) return nums[0];
+  const passed = {}
+  for (let i = 0; i < nums.length; i++) {
+    if (passed[String(nums[i])] in passed) {
+       delete passed[String(nums[i])]
+     } else {
+       passed[nums[i]] = nums[i];
+     }
   }
-  console.log(arr[0])
+  console.log(Object.values(passed)[0]);
 }
 
 const main = () => {
