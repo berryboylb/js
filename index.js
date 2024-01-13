@@ -400,15 +400,29 @@ function addBinary(a, b) {
 
 function singleNumber(nums) {
   if (nums.length === 1) return nums[0];
-  const passed = {}
+  const passed = {};
   for (let i = 0; i < nums.length; i++) {
     if (passed[String(nums[i])] in passed) {
-       delete passed[String(nums[i])]
-     } else {
-       passed[nums[i]] = nums[i];
-     }
+      delete passed[String(nums[i])];
+    } else {
+      passed[nums[i]] = nums[i];
+    }
   }
   console.log(Object.values(passed)[0]);
+}
+
+function buysell(prices) {
+  let profit = 0;
+  let smallest = prices[0];
+  for (let i = 0; i < prices.length; i++) {
+    if (prices[i] < smallest) {
+      smallest = prices[i];
+    } else if (prices[i] - smallest > profit) {
+      profit = prices[i] - smallest;
+    }
+  }
+  return profit
+  // console.log(profit);
 }
 
 const main = () => {
@@ -426,7 +440,8 @@ const main = () => {
   // plusOne([2, 9, 9]);
   // addBinary("11", "1");
   // isPalindrome("race a car");
-  singleNumber([2, 2, 1]);
+  // singleNumber([2, 2, 1]);
+  buysell([2, 4, 1]);
 };
 
 main();
