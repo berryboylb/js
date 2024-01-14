@@ -421,8 +421,36 @@ function buysell(prices) {
       profit = prices[i] - smallest;
     }
   }
-  return profit
+  return profit;
   // console.log(profit);
+}
+
+function addSquare(num) {
+  let result = 0;
+  for (let i = 0; i < String(num).length; i++) {
+    result += Number(String(num)[i]) ** 2;
+  }
+  console.log({ result });
+  return result;
+}
+
+function isHappy(num) {
+ let seen = new Set();
+ let result = 0;
+ for (let i = 0; i < String(num).length; i++) {
+   result += Number(String(num)[i]) ** 2;
+ }
+ console.log({ result });
+ if (seen.has(result)) {
+   return false;
+ } else {
+   seen.add(result);
+   if (result === 1) {
+     return true;
+   } else {
+     return isHappy(result);
+   }
+ }
 }
 
 const main = () => {
@@ -441,7 +469,8 @@ const main = () => {
   // addBinary("11", "1");
   // isPalindrome("race a car");
   // singleNumber([2, 2, 1]);
-  buysell([2, 4, 1]);
+  // buysell([2, 4, 1]);
+  isHappy(19);
 };
 
 main();
