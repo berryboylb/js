@@ -434,24 +434,55 @@ function addSquare(num) {
   return result;
 }
 
-function isHappy(num) {
- let seen = new Set();
- let result = 0;
- for (let i = 0; i < String(num).length; i++) {
-   result += Number(String(num)[i]) ** 2;
- }
- console.log({ result });
- if (seen.has(result)) {
-   return false;
- } else {
-   seen.add(result);
-   if (result === 1) {
-     return true;
-   } else {
-     return isHappy(result);
-   }
- }
+function isHappy(n) {
+  let seen = new Set();
+  let result = n;
+  while (result !== 1 && !seen.has(result)) {
+    seen.add(result);
+    result = addSquare(result);
+  }
+  return result == 1;
 }
+
+function containsDuplicate(nums) {
+  let items = new Set();
+
+  for (const num of nums) {
+    if (items.has(num)) {
+      console.log(true, items);
+      return true;
+    } else {
+      items.add(num);
+    }
+  }
+  console.log(false, items);
+  return false;
+}
+
+function containsNearbyDuplicate(nums, k) {
+  let map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    const target = k - nums[i];
+    if (map.has(target) && Math.abs(i - map.get(target)) <= k) {
+      console.log(true);
+      return true;
+    }
+    map.set(nums[i], i);
+  }
+  console.log(false);
+  return false;
+}
+
+var containsNearbyDuplicate = function (nums, k) {
+  let map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (map.has(nums[i]) && i - map.get(nums[i]) <= k) {
+      return true;
+    }
+    map.set(nums[i], i);
+  }
+  return false;
+};
 
 const main = () => {
   // nearestVowel("babbb");
@@ -470,7 +501,9 @@ const main = () => {
   // isPalindrome("race a car");
   // singleNumber([2, 2, 1]);
   // buysell([2, 4, 1]);
-  isHappy(19);
+  // isHappy(2);
+  // containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]);
+  containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2);
 };
 
 main();
