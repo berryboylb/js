@@ -484,6 +484,11 @@ var containsNearbyDuplicate = function (nums, k) {
   return false;
 };
 
+function isPowerOfTwo(n) {
+  console.log(Number.isInteger(Math.log2(n)));
+  return Number.isInteger(Math.log2(n));
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -503,7 +508,8 @@ const main = () => {
   // buysell([2, 4, 1]);
   // isHappy(2);
   // containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]);
-  containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2);
+  // containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2);
+  isPowerOfTwo(6)
 };
 
 main();
