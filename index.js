@@ -485,8 +485,41 @@ var containsNearbyDuplicate = function (nums, k) {
 };
 
 function isPowerOfTwo(n) {
-  console.log(Number.isInteger(Math.log2(n)));
   return Number.isInteger(Math.log2(n));
+}
+
+function isPowerOfNum(num, base) {
+  return Number.isInteger(Math.log(num) / Math.log(base) || Math.log(2));
+}
+// isPowerOfNum(8, 2); true
+// isPowerOfNum(16, 4); true
+// isPowerOfNum(9); false
+
+function isAnagram(s, t) {
+  if (s.length !== t.length) {
+    return false;
+  }
+  for (let i = 0; i < t.length; i++) {
+    if (!s.includes(t[i])) {
+      return false;
+    }
+    s = s.replace(t[i], "");
+  }
+  return s.length === 0;
+}
+
+function addDigits(num) {
+  if (String(num).length < 2) {
+    return num
+  }
+  while(String(num).length > 1){
+    let tempNumber = 0;
+    for (let i = 0; i< String(num).length; i++){
+      tempNumber +=Number(String(num)[i])
+    }
+    num = tempNumber
+  }
+  return num
 }
 
 const main = () => {
@@ -509,7 +542,10 @@ const main = () => {
   // isHappy(2);
   // containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]);
   // containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2);
-  isPowerOfTwo(6)
+  // isPowerOfNum(8, 2);
+  // isAnagram("aacc", "ccac");
+  addDigits(38);
 };
+
 
 main();
