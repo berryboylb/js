@@ -510,16 +510,29 @@ function isAnagram(s, t) {
 
 function addDigits(num) {
   if (String(num).length < 2) {
-    return num
+    return num;
   }
-  while(String(num).length > 1){
+  while (String(num).length > 1) {
     let tempNumber = 0;
-    for (let i = 0; i< String(num).length; i++){
-      tempNumber +=Number(String(num)[i])
+    for (let i = 0; i < String(num).length; i++) {
+      tempNumber += Number(String(num)[i]);
     }
-    num = tempNumber
+    num = tempNumber;
   }
-  return num
+  return num;
+}
+
+function missingNumber(nums) {
+  let items = new Set();
+  for (const num of nums) {
+    items.add(num);
+  }
+  for (let i = 0; i <= nums.length; i++) {
+    if (!items.has(i)) {
+      console.log(i)
+      return i;
+    }
+  }
 }
 
 const main = () => {
@@ -545,7 +558,7 @@ const main = () => {
   // isPowerOfNum(8, 2);
   // isAnagram("aacc", "ccac");
   addDigits(38);
+  missingNumber([3,0, 1]);
 };
-
 
 main();
