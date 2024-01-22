@@ -529,8 +529,68 @@ function missingNumber(nums) {
   }
   for (let i = 0; i <= nums.length; i++) {
     if (!items.has(i)) {
-      console.log(i)
+      console.log(i);
       return i;
+    }
+  }
+}
+function moveZeroes(nums) {
+  // let i = 0;
+
+  // for (let j = i+1; j < nums.length; j++) {
+  //   if (nums[i] !== 0) {
+  //     i++
+  //     continue
+  //   } else {
+  //     if (nums[j] !== 0) {
+  //       [nums[i], nums[j]] = [nums[j], nums[i]]
+  //       i++
+  //     }
+  //     continue
+  //   }
+  // }
+  // console.log(nums);
+  // return nums;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 0 && nums[i + 1] !== undefined) {
+      [nums[i], nums[i + 1]] = [nums[i + 1], nums[i]];
+    } else if (nums[i - 1] === 0) {
+      [nums[i - 1], nums[i]] = [nums[i], nums[i - 1]];
+    }
+  }
+
+  console.log(nums);
+}
+
+function nbiggest(nums, k) {
+  const arr = [];
+  for (let i = 0; i < nums.length; i++) {
+    if (arr.length > k) {
+      const smallest = Math.min(...arr);
+      const index = nums.indexOf(smallest);
+      arr.splice(index, 1);
+    }
+
+    arr.push(nums[i]);
+  }
+  const smallest = Math.min(...arr);
+  console.log(smallest, arr);
+}
+
+function findErrorNums(nums) {
+  let set = new Set();
+  let replica = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (set.has(nums[i])) {
+      replica = nums[i];
+      break;
+    }
+    set.add(nums[i]);
+  }
+
+  for (let j = 1; j <= nums.length; j++) {
+    if (!nums.includes(j)) {
+      return [replica, j];
     }
   }
 }
@@ -557,8 +617,11 @@ const main = () => {
   // containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2);
   // isPowerOfNum(8, 2);
   // isAnagram("aacc", "ccac");
-  addDigits(38);
-  missingNumber([3,0, 1]);
+  // addDigits(38);
+  // missingNumber([3, 0, 1]);
+  // moveZeroes([0, 1, 0, 3, 12]);
+  // nbiggest([3, 2, 1, 5, 6, 4], 2);
+  findErrorNums([2, 2]);
 };
 
 main();
