@@ -583,16 +583,87 @@ function findErrorNums(nums) {
   for (let i = 0; i < nums.length; i++) {
     if (set.has(nums[i])) {
       replica = nums[i];
-      break;
     }
     set.add(nums[i]);
   }
 
   for (let j = 1; j <= nums.length; j++) {
-    if (!nums.includes(j)) {
+    if (!set.has(j)) {
       return [replica, j];
     }
   }
+}
+
+function reverse(x) {
+  let str = String(x);
+  let rvrstr = "";
+  let isNegative = false;
+  let start = 0;
+  let maxInt32 = BigInt(Math.pow(2, 31) - 1);
+  if (str[0] === "-") {
+    isNegative = true;
+    start = 1;
+  }
+  for (let i = start; i < str.length; i++) {
+    rvrstr = str[i] + rvrstr;
+  }
+  if (Number(rvrstr) > maxInt32) return 0;
+  return isNegative ? Number("-" + rvrstr) : Number(rvrstr);
+}
+
+function stringToNum(str) {
+  str = str.replace(/[^0-9]/g, "");
+  let num = 0;
+  let val = 0;
+  let negative = false;
+
+  for (let i = 0; i < str.length; i++) {
+    const placeValue = 10 ** val;
+    if (str[i] === "-" && i === 0) {
+      continue;
+    }
+    console.log(str.charCodeAt(i) - "0".charCodeAt(0));
+
+    val++;
+  }
+}
+
+function intToRoman(num) {
+  const numerals = new Map([
+    [1, "I"],
+    [5, "V"],
+    [10, "X"],
+    [50, "L"],
+    [100, "C"],
+    [500, "D"],
+    [1000, "M"],
+  ]);
+
+  if (numerals.has(num)) {
+    console.log(numerals.get(num));
+    return numerals.get(num);
+  } else {
+    let result = "";
+    for (let i = 0; i < String(num).length; i++) {
+      console.log({ curr });
+      if (curr) {
+        result += curr;
+        continue;
+      }
+    }
+    console.log(result);
+  }
+}
+
+function findDisappearedNumbers(nums) {
+  const numSet = new Set(nums);
+  const res = [];
+  for (let i = 1; i <= nums.length; i++) {
+    if (!numSet.has(i)) {
+      res.push(i);
+    }
+  }
+  console.log(res);
 }
 
 const main = () => {
@@ -621,7 +692,11 @@ const main = () => {
   // missingNumber([3, 0, 1]);
   // moveZeroes([0, 1, 0, 3, 12]);
   // nbiggest([3, 2, 1, 5, 6, 4], 2);
-  findErrorNums([2, 2]);
+  // findErrorNums([2, 2]);
+  // reverse(-123);
+  // stringToNum("40");
+  // intToRoman(3);
+  findDisappearedNumbers([1, 1]);
 };
 
 main();
