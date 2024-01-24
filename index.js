@@ -665,6 +665,18 @@ function findDisappearedNumbers(nums) {
   }
   console.log(res);
 }
+function findComplement(num) {
+  const numInBaseTwo = num.toString(2);
+  let compliment = "";
+  for (const num of numInBaseTwo) {
+    if (num === "1") {
+      compliment += "0";
+    } else {
+      compliment += "1";
+    }
+  }
+  return parseInt(compliment, 2)
+}
 
 const main = () => {
   // nearestVowel("babbb");
@@ -696,7 +708,8 @@ const main = () => {
   // reverse(-123);
   // stringToNum("40");
   // intToRoman(3);
-  findDisappearedNumbers([1, 1]);
+  // findDisappearedNumbers([1, 1]);
+  findComplement(5);
 };
 
 main();
