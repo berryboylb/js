@@ -675,8 +675,39 @@ function findComplement(num) {
       compliment += "1";
     }
   }
-  return parseInt(compliment, 2)
+  return parseInt(compliment, 2);
 }
+
+function arrangeCoins(n) {
+  if (n === 1) return 1;
+  let counter = n;
+  for (let i = 1; i <= n; i++) {
+    if (counter < i) {
+      return i - 1;
+    }
+    counter -= i;
+  }
+} //91ms
+
+function arrangeCoinRecursion(n) {
+  return arrange(n, 1);
+} //151ms
+function arrange(n, k) {
+  if (n < k) return console.log(k - 1);
+  return arrange(n - k, k + 1);
+}
+
+function hammingDistance(x, y) {
+  const bitX = x.toString(2).padStart(32, "0");
+  const bitY = y.toString(2).padStart(32, "0");
+  let distance = 0;
+  for (let i = 0; i < bitX.length; i++) {
+    if (bitX[i] !== bitY[i]) {
+      distance++;
+    }
+  }
+  return distance;
+}//59ms
 
 const main = () => {
   // nearestVowel("babbb");
@@ -709,7 +740,11 @@ const main = () => {
   // stringToNum("40");
   // intToRoman(3);
   // findDisappearedNumbers([1, 1]);
-  findComplement(5);
+  // findComplement(5);
+  // arrangeCoins(5);
+  // arrangeCoinsDone(5);
+  // findContentChildren([1, 2, 3], [1, 1]);
+  hammingDistance(4, 14);
 };
 
 main();
