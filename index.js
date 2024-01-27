@@ -707,7 +707,15 @@ function hammingDistance(x, y) {
     }
   }
   return distance;
-}//59ms
+} //59ms
+
+function thirdMax(nums) {
+  let set = new Set(nums);
+  while (set.size > 3) {
+    set.delete(Math.min(...set));
+  }
+  return set.size < 3 ? Math.max(...set) : Math.min(...set);
+}
 
 const main = () => {
   // nearestVowel("babbb");
@@ -744,7 +752,8 @@ const main = () => {
   // arrangeCoins(5);
   // arrangeCoinsDone(5);
   // findContentChildren([1, 2, 3], [1, 1]);
-  hammingDistance(4, 14);
+  // hammingDistance(4, 14);
+  thirdMax([2, 2, 3, 1]);
 };
 
 main();
