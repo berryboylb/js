@@ -717,6 +717,38 @@ function thirdMax(nums) {
   return set.size < 3 ? Math.max(...set) : Math.min(...set);
 }
 
+function kMax(nums, k) {
+  let set = new Set(nums);
+  while (set.size > k) {
+    set.delete(Math.min(...set));
+  }
+  return set.size < k ? Math.max(...set) : Math.min(...set);
+}
+
+function addStrings(num1, num2) {
+  const max = Math.max(num1.length, num2.length);
+  num1 = num1.padStart(max, "0");
+  num2 = num2.padStart(max, "0");
+  let result = "";
+  let carry = 0;
+  for (let i = max - 1; i >= 0; i--) {
+    const init = parseInt(num1[i]);
+    const sec = parseInt(num2[i]);
+    let sum = init + sec + carry;
+    if (sum >= 10) {
+      carry = 1;
+      sum -= 10;
+    } else {
+      carry = 0;
+    }
+    result = String(sum) + result;
+  }
+  if (carry > 0) {
+    result = String(carry) + result;
+  }
+  return result;
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -753,7 +785,9 @@ const main = () => {
   // arrangeCoinsDone(5);
   // findContentChildren([1, 2, 3], [1, 1]);
   // hammingDistance(4, 14);
-  thirdMax([2, 2, 3, 1]);
+  // thirdMax([2, 2, 3, 1]);
+  // kMax([2, 2, 3, 1], 3);
+  addStrings("11", "123");
 };
 
 main();
