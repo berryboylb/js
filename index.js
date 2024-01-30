@@ -743,10 +743,7 @@ function addStrings(num1, num2) {
     }
     result = String(sum) + result;
   }
-  if (carry > 0) {
-    result = String(carry) + result;
-  }
-  return result;
+  return carry > 0 ? (result = String(carry) + result) : result;
 }
 
 const main = () => {
