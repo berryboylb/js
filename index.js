@@ -743,7 +743,11 @@ function addStrings(num1, num2) {
     }
     result = String(sum) + result;
   }
-  return carry > 0 ? (result = String(carry) + result) : result;
+  return carry > 0 ? String(carry) + result : result;
+}
+
+function countSegments(s) {
+  return s.split(" ").filter((item) => item).length;
 }
 
 const main = () => {
@@ -784,7 +788,8 @@ const main = () => {
   // hammingDistance(4, 14);
   // thirdMax([2, 2, 3, 1]);
   // kMax([2, 2, 3, 1], 3);
-  addStrings("11", "123");
+  // addStrings("11", "123");
+  countSegments("Hello, my name is John");
 };
 
 main();
