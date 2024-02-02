@@ -750,6 +750,61 @@ function countSegments(s) {
   return s.split(" ").filter((item) => item).length;
 }
 
+function islandPerimeter(grid) {
+  let perimeter = 0;
+  const land = 1;
+
+  // Iterate over all cells in the grid
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      // If the current cell is part of the island
+      if (grid[i][j] === land) {
+        // Increment the perimeter by 4
+        perimeter += 4;
+
+        // Check each neighboring cell
+        if (i > 0 && grid[i - 1][j] === land) {
+          // If the cell above is part of the island, decrement the perimeter by 1
+          perimeter -= 1;
+        }
+        if (j > 0 && grid[i][j - 1] === land) {
+          // If the cell to the left is part of the island, decrement the perimeter by 1
+          perimeter -= 1;
+        }
+        if (i < grid.length - 1 && grid[i + 1][j] === land) {
+          // If the cell below is part of the island, decrement the perimeter by 1
+          perimeter -= 1;
+        }
+        if (j < grid[i].length - 1 && grid[i][j + 1] === land) {
+          // If the cell to the right is part of the island, decrement the perimeter by 1
+          perimeter -= 1;
+        }
+      }
+    }
+  }
+
+  return perimeter;
+}
+
+function findContentChildrenn(g, s) {
+   g.sort((a, b) => a - b);
+   s.sort((a, b) => a - b);
+   let mostContent = 0;
+   let j = 0;
+   for (let i = 0; i < g.length; i++) {
+     // Skip to the next cookie if the current one is too small
+     while (j < s.length && s[j] < g[i]) {
+       j++;
+     }
+     // If a suitable cookie was found, increment the content children counter
+     if (j < s.length) {
+       mostContent++;
+       j++; // Move to the next cookie
+     }
+   }
+   return mostContent;
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -789,7 +844,14 @@ const main = () => {
   // thirdMax([2, 2, 3, 1]);
   // kMax([2, 2, 3, 1], 3);
   // addStrings("11", "123");
-  countSegments("Hello, my name is John");
+  // countSegments("Hello, my name is John");
+  // islandPerimeter([
+  //   [0, 1, 0, 0],
+  //   [1, 1, 1, 0],
+  //   [0, 1, 0, 0],
+  //   [1, 1, 0, 0],
+  // ]);
+  findContentChildrenn([1, 2], [1, 2, 3]);
 };
 
 main();
