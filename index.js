@@ -787,22 +787,32 @@ function islandPerimeter(grid) {
 }
 
 function findContentChildrenn(g, s) {
-   g.sort((a, b) => a - b);
-   s.sort((a, b) => a - b);
-   let mostContent = 0;
-   let j = 0;
-   for (let i = 0; i < g.length; i++) {
-     // Skip to the next cookie if the current one is too small
-     while (j < s.length && s[j] < g[i]) {
-       j++;
-     }
-     // If a suitable cookie was found, increment the content children counter
-     if (j < s.length) {
-       mostContent++;
-       j++; // Move to the next cookie
-     }
-   }
-   return mostContent;
+  g.sort((a, b) => a - b);
+  s.sort((a, b) => a - b);
+  let mostContent = 0;
+  let j = 0;
+  for (let i = 0; i < g.length; i++) {
+    // Skip to the next cookie if the current one is too small
+    while (j < s.length && s[j] < g[i]) {
+      j++;
+    }
+    // If a suitable cookie was found, increment the content children counter
+    if (j < s.length) {
+      mostContent++;
+      j++; // Move to the next cookie
+    }
+  }
+  return mostContent;
+}
+
+function findMaxConsecutiveOnes(nums) {
+  let maxNums = 0;
+  let temp = 0;
+  for (const num of nums) {
+    temp = temp * num + num;
+    if (temp > maxNums) maxNums = temp;
+  }
+  return maxNums;
 }
 
 const main = () => {
@@ -851,7 +861,8 @@ const main = () => {
   //   [0, 1, 0, 0],
   //   [1, 1, 0, 0],
   // ]);
-  findContentChildrenn([1, 2], [1, 2, 3]);
+  // findContentChildrenn([1, 2], [1, 2, 3]);
+  findMaxConsecutiveOnes([1, 0, 1, 1, 0, 1]);
 };
 
 main();
