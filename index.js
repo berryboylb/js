@@ -815,6 +815,29 @@ function findMaxConsecutiveOnes(nums) {
   return maxNums;
 }
 
+function squareRoot(num) {
+  console.log(Math.exp(Math.log(num) / 2));
+  return Math.floor(Math.exp(Math.log(num) / 2));
+}
+
+function licenseKeyFormatting(s, k) {
+  s = s.toUpperCase().replace(/[^a-zA-Z0-9]/g, "");
+  let res = "";
+  let count = 0;
+
+  for (let i = s.length - 1; i >= 0; i--) {
+    res = s[i] + res;
+    count++;
+
+    if (count === k && i !== 0) {
+      res = "-" + res;
+      count = 0;
+    }
+  }
+
+  return res;
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -862,7 +885,9 @@ const main = () => {
   //   [1, 1, 0, 0],
   // ]);
   // findContentChildrenn([1, 2], [1, 2, 3]);
-  findMaxConsecutiveOnes([1, 0, 1, 1, 0, 1]);
+  // findMaxConsecutiveOnes([1, 0, 1, 1, 0, 1]);
+  // squareRoot(25)
+  licenseKeyFormatting("2-5g-3-J", 2);
 };
 
 main();
