@@ -838,6 +838,17 @@ function licenseKeyFormatting(s, k) {
   return res;
 }
 
+function convertToBase7(num) {
+  num = String(num);
+  let negative = false;
+  if (num[0] === "-") {
+    num = num.substring(1);
+    negative = true;
+  }
+  num = Number(num);
+  console.log(negative ? "-" + num.toString(7) : num.toString(7));
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -887,7 +898,8 @@ const main = () => {
   // findContentChildrenn([1, 2], [1, 2, 3]);
   // findMaxConsecutiveOnes([1, 0, 1, 1, 0, 1]);
   // squareRoot(25)
-  licenseKeyFormatting("2-5g-3-J", 2);
+  // licenseKeyFormatting("2-5g-3-J", 2);
+  convertToBase7(-100);
 };
 
 main();
