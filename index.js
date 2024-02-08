@@ -849,6 +849,23 @@ function convertToBase7(num) {
   console.log(negative ? "-" + num.toString(7) : num.toString(7));
 }
 
+function reverseWords(s) {
+  const arr = s.split(" ");
+  let res = "";
+  for (let j = 0; j < arr.length; j++) {
+    for (let i = arr[j].length - 1; i >= 0; i--) {
+      const char = arr[j][i];
+      res += char;
+    }
+    if (j < arr.length - 1) {
+      res += " ";
+    }
+  }
+
+  console.log({ arr, res });
+  return res
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -899,7 +916,8 @@ const main = () => {
   // findMaxConsecutiveOnes([1, 0, 1, 1, 0, 1]);
   // squareRoot(25)
   // licenseKeyFormatting("2-5g-3-J", 2);
-  convertToBase7(-100);
+  // convertToBase7(-100);
+  reverseWords("Mr Ding");
 };
 
 main();
