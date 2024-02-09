@@ -871,13 +871,10 @@ function climbStairs(n) {
     [0, 1],
     [1, 1],
   ]);
-  function countWays(n) {
-    if (!ways.has(n)) {
-      ways.set(n, countWays(n - 1) + countWays(n - 2));
-    }
-    return ways.get(n);
+  for (let i = 2; i <= n; i++) {
+    ways.set(i, ways.get(i - 1) + ways.get(i - 2));
   }
-  return countWays(n)
+  return ways.get(n);
 }
 
 const main = () => {
