@@ -863,7 +863,21 @@ function reverseWords(s) {
   }
 
   console.log({ arr, res });
-  return res
+  return res;
+}
+
+function climbStairs(n) {
+  const ways = new Map([
+    [0, 1],
+    [1, 1],
+  ]);
+  function countWays(n) {
+    if (!ways.has(n)) {
+      ways.set(n, countWays(n - 1) + countWays(n - 2));
+    }
+    return ways.get(n);
+  }
+  return countWays(n)
 }
 
 const main = () => {
@@ -917,7 +931,8 @@ const main = () => {
   // squareRoot(25)
   // licenseKeyFormatting("2-5g-3-J", 2);
   // convertToBase7(-100);
-  reverseWords("Mr Ding");
+  // reverseWords("Mr Ding");
+  climbStairs(5);
 };
 
 main();
