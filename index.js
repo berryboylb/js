@@ -877,6 +877,21 @@ function climbStairs(n) {
   return ways.get(n);
 }
 
+var rotateString = function (s, goal) {
+  let str = s;
+  for (let i = 0; i < s.length; i++) {
+    const last = str[str.length - 1];
+    str = last + str.substring(0, str.length - 1);
+    if (str === goal) {
+      console.log({ str, ans: true });
+      return true;
+    }
+  }
+
+  console.log({ str, ans: false });
+  return false;
+};
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -929,7 +944,8 @@ const main = () => {
   // licenseKeyFormatting("2-5g-3-J", 2);
   // convertToBase7(-100);
   // reverseWords("Mr Ding");
-  climbStairs(5);
+  // climbStairs(5);
+  rotateString("abcde", "cdeab");
 };
 
 main();
