@@ -892,6 +892,35 @@ var rotateString = function (s, goal) {
   return false;
 };
 
+function reversed(s) {
+  let reverse = "";
+  for (let i = s.length - 1; i >= 0; i--) {
+    reverse += s[i];
+  }
+  return reverse;
+}
+
+var validPalindrome = function (s) {
+  for (let i = 0; i <= s.length; i++) {
+    let current = s.substring(0, i) + s.substring(i + 1);
+    let reverse = reversed(current);
+    if (current === reverse) {
+      console.log({ res: true });
+      return true;
+    }
+  }
+  console.log({ res: false });
+  return false;
+};
+
+var toLowerCase = function (s) {
+  let result = "";
+  for (let i = 0; i < s.length; i++) {
+    result += s[i].toLowerCase();
+  }
+  return s.toLowerCase();
+};
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -945,7 +974,9 @@ const main = () => {
   // convertToBase7(-100);
   // reverseWords("Mr Ding");
   // climbStairs(5);
-  rotateString("abcde", "cdeab");
+  // rotateString("abcde", "cdeab");
+  // validPalindrome("abc");
+  toLowerCase("Hello");
 };
 
 main();
