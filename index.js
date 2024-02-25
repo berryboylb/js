@@ -921,6 +921,86 @@ var toLowerCase = function (s) {
   return s.toLowerCase();
 };
 
+var findShortestSubArray = function (nums) {
+  // Maps to keep track of the frequency, first occurrence, and last occurrence of elements.
+  let count = {};
+  let firstOccurrence = {};
+  let lastOccurrence = {};
+
+  // Degree of the array, which is the maximum frequency of any element.
+  let degree = 0;
+
+  // Iterate through the array to populate the maps.
+  for (let i = 0; i < nums.length; ++i) {
+    let value = nums[i];
+
+    // Increase the count for this value and update the degree.
+    degree = Math.max(degree, (count[value] = (count[value] || 0) + 1));
+
+    // Record the first occurrence of this value.
+    if (!firstOccurrence.hasOwnProperty(value)) {
+      firstOccurrence[value] = i;
+    }
+
+    // Update the last occurrence of this value.
+    lastOccurrence[value] = i;
+  }
+
+  // Initialize the answer as a large number.
+  let minLength = Infinity;
+
+  // Loop through the array again to find the shortest subarray with the same degree.
+  for (let value in count) {
+    if (count[value] === degree) {
+      // Calculate the length of the subarray for this value.
+      let length = lastOccurrence[value] - firstOccurrence[value] + 1;
+
+      // Update the answer if this length is smaller.
+      minLength = Math.min(minLength, length);
+    }
+  }
+
+  // Return the minimum length found.
+  return minLength;
+};
+
+var Stub = function (nums) {
+  let counts = {};
+  let diff = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    if (!counts.hasOwnProperty(nums[i])) {
+      counts[nums[i]] = 1;
+    } else {
+      counts[nums[i]] += 1;
+    }
+    let difference = nums.lastIndexOf(nums[i]) - nums.indexOf(nums[i]) + 1;
+    diff[nums[i]] = difference;
+  }
+
+  console.log(counts);
+};
+
+var majorityElement = function (nums) {
+  let max = 0;
+  let mostOccurrence = 0;
+  let map = new Map();
+  for (const num of nums) {
+    if (map.has(num)) {
+      map.set(num, map.get(num) + 1);
+    } else {
+      map.set(num, 1);
+    }
+    if (map.get(num) > mostOccurrence) {
+      mostOccurrence = map.get(num);
+      max = num;
+    }
+  }
+
+  console.log({ map, max });
+  return max;
+};
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -976,7 +1056,9 @@ const main = () => {
   // climbStairs(5);
   // rotateString("abcde", "cdeab");
   // validPalindrome("abc");
-  toLowerCase("Hello");
+  // toLowerCase("Hello");
+  // Stub([1, 2, 2, 3, 1]);
+  majorityElement([3, 2, 3]);
 };
 
 main();
