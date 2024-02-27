@@ -1001,6 +1001,25 @@ var majorityElement = function (nums) {
   return max;
 };
 
+var constructRectangle = function (area) {
+  let max = Number.POSITIVE_INFINITY;
+  let res = [0, 0];
+
+  for (let width = 1; width <= Math.sqrt(area); width++) {
+    if (area % width === 0) {
+      const length = area / width;
+      const diff = Math.abs(length - width);
+      if (width <= length && diff < max) {
+        max = diff;
+        res = [length, width];
+      }
+    }
+  }
+
+  console.log({ res });
+  return res
+};
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -1058,7 +1077,8 @@ const main = () => {
   // validPalindrome("abc");
   // toLowerCase("Hello");
   // Stub([1, 2, 2, 3, 1]);
-  majorityElement([3, 2, 3]);
+  // majorityElement([3, 2, 3]);
+  constructRectangle(122122);
 };
 
 main();
