@@ -1016,9 +1016,39 @@ var constructRectangle = function (area) {
     }
   }
 
-  console.log({ res });
-  return res
+  console.log({ res, are: Math.sqrt(area) });
+  return res;
 };
+
+// function* count(){
+//   yield 1;
+//   yield 2;
+//   return 3;
+// }
+
+// for (const value of count()) {
+//   console.log(value);
+// }
+
+function countOccurrences(paragraph, banned) {
+  const words = paragraph
+    .toLowerCase()
+    .replace(/[^\w\s]/g, " ")
+    .split(" ");
+  let count = 0;
+  let wordCount = {};
+  let ans = "";
+  for (const word of words) {
+    if (!banned.includes(word) && word !== "") {
+      wordCount[word] = (wordCount[word] || 0) + 1;
+      if (wordCount[word] > count) {
+        count = wordCount[word];
+        ans = word;
+      }
+    }
+  }
+  return ans;
+}
 
 const main = () => {
   // nearestVowel("babbb");
@@ -1078,7 +1108,8 @@ const main = () => {
   // toLowerCase("Hello");
   // Stub([1, 2, 2, 3, 1]);
   // majorityElement([3, 2, 3]);
-  constructRectangle(122122);
+  // constructRectangle(4);
+  countOccurrences("a, a, a, a, b,b,b,c, c", ["a"]);
 };
 
 main();
