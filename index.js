@@ -1033,20 +1033,21 @@ var constructRectangle = function (area) {
 function countOccurrences(paragraph, banned) {
   const words = paragraph
     .toLowerCase()
-    .replace(/[^\w\s]/g, " ")
+    .replace(/[^a-z]/g, " ")
     .split(" ");
   let count = 0;
-  let wordCount = {};
+  const wordCount = new Map();
   let ans = "";
   for (const word of words) {
     if (!banned.includes(word) && word !== "") {
-      wordCount[word] = (wordCount[word] || 0) + 1;
-      if (wordCount[word] > count) {
-        count = wordCount[word];
+      wordCount.set(word, (wordCount.get(word) || 0) + 1);
+      if (wordCount.get(word) > count) {
+        count = wordCount.get(word);
         ans = word;
       }
     }
   }
+  console.log({ ans, words });
   return ans;
 }
 
