@@ -1040,9 +1040,10 @@ function countOccurrences(paragraph, banned) {
   let ans = "";
   for (const word of words) {
     if (!banned.includes(word) && word !== "") {
-      wordCount.set(word, (wordCount.get(word) || 0) + 1);
-      if (wordCount.get(word) > count) {
-        count = wordCount.get(word);
+      const curr = (wordCount.get(word) || 0) + 1;
+      wordCount.set(word, curr);
+      if (curr > count) {
+        count = curr;
         ans = word;
       }
     }
@@ -1050,6 +1051,25 @@ function countOccurrences(paragraph, banned) {
   console.log({ ans, words });
   return ans;
 }
+
+var uniquePaths = function(m, n) {
+    // Create a 2D array to store the number of paths
+    const dp = Array(m).fill().map(() => Array(n).fill(0));
+
+    for (let i = 0; i < m; i++) {
+        dp[i][0] = 1;
+    }
+    for (let j = 0; j < n; j++) {
+        dp[0][j] = 1;
+    }
+
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+        }
+    }
+    return dp[m - 1][n - 1];
+};
 
 const main = () => {
   // nearestVowel("babbb");
