@@ -1071,6 +1071,34 @@ var uniquePaths = function(m, n) {
     return dp[m - 1][n - 1];
 };
 
+var generateParenthesis = function(n) {
+    const result = [];
+    
+    // Helper function to generate parentheses recursively
+    function backtrack(current, open, close) {
+        // Base case: If the current string length is equal to 2 * n, add it to the result
+        if (current.length === 2 * n) {
+            result.push(current);
+            return;
+        }
+        
+        // Recursive case: Add an opening parenthesis if there are still open parentheses available
+        if (open < n) {
+            backtrack(current + '(', open + 1, close);
+        }
+        
+        // Recursive case: Add a closing parenthesis if there are still open parentheses that haven't been closed yet
+        if (close < open) {
+            backtrack(current + ')', open, close + 1);
+        }
+    }
+    
+    // Start the recursive process with an empty string and counts of open and close parentheses
+    backtrack('', 0, 0);
+    
+    return result;
+};
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
