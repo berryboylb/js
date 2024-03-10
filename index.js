@@ -629,30 +629,32 @@ function stringToNum(str) {
 }
 
 function intToRoman(num) {
-  const numerals = new Map([
-    [1, "I"],
-    [5, "V"],
-    [10, "X"],
-    [50, "L"],
-    [100, "C"],
-    [500, "D"],
-    [1000, "M"],
-  ]);
+  const romanNumerals = [
+    { value: 1000, symbol: "M" },
+    { value: 900, symbol: "CM" },
+    { value: 500, symbol: "D" },
+    { value: 400, symbol: "CD" },
+    { value: 100, symbol: "C" },
+    { value: 90, symbol: "XC" },
+    { value: 50, symbol: "L" },
+    { value: 40, symbol: "XL" },
+    { value: 10, symbol: "X" },
+    { value: 9, symbol: "IX" },
+    { value: 5, symbol: "V" },
+    { value: 4, symbol: "IV" },
+    { value: 1, symbol: "I" },
+  ];
 
-  if (numerals.has(num)) {
-    console.log(numerals.get(num));
-    return numerals.get(num);
-  } else {
-    let result = "";
-    for (let i = 0; i < String(num).length; i++) {
-      console.log({ curr });
-      if (curr) {
-        result += curr;
-        continue;
-      }
+  let result = "";
+
+  for (const numeral of romanNumerals) {
+    while (num >= numeral.value) {
+      result += numeral.symbol;
+      num -= numeral.value;
     }
-    console.log(result);
   }
+
+  return result;
 }
 
 function findDisappearedNumbers(nums) {
@@ -1071,6 +1073,17 @@ var uniquePaths = function(m, n) {
     return dp[m - 1][n - 1];
 };
 
+var generateParenthesisMine = function(n) {
+  const result = [];
+  let opens = 0;
+  let closes = 0;
+  let str = ""
+    
+  
+    
+  return result;
+};
+
 var generateParenthesis = function(n) {
     const result = [];
     
@@ -1094,7 +1107,9 @@ var generateParenthesis = function(n) {
     }
     
     // Start the recursive process with an empty string and counts of open and close parentheses
-    backtrack('', 0, 0);
+  backtrack('', 0, 0);
+  
+  console.log({ result, length:result.length });
     
     return result;
 };
@@ -1158,7 +1173,8 @@ const main = () => {
   // Stub([1, 2, 2, 3, 1]);
   // majorityElement([3, 2, 3]);
   // constructRectangle(4);
-  countOccurrences("a, a, a, a, b,b,b,c, c", ["a"]);
+  // countOccurrences("a, a, a, a, b,b,b,c, c", ["a"]);
+  generateParenthesis(2)
 };
 
 main();
