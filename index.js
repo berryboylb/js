@@ -664,13 +664,11 @@ var customSortString = function (order, s) {
     console.log({ indexer, char: order[i].valueOf() });
     item.set(order[i], order.length - i);
   }
-  const sortedCharacters = Array.from(s).sort((a, b) => {
+  return Array.from(s).sort((a, b) => {
     const valueA = item.has(a) ? item.get(a) : 0;
     const valueB = item.has(b) ? item.get(b) : 0;
     return valueB - valueA;
   }).join("");
-
-  console.log({ sortedCharacters });
 };
 function findDisappearedNumbers(nums) {
   const numSet = new Set(nums);
