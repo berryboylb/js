@@ -657,6 +657,21 @@ function intToRoman(num) {
   return result;
 }
 
+var customSortString = function (order, s) {
+  const item = new Map();
+  for (let i = 0; i < order.length; i++) {
+    const indexer = order.indexOf(order[i])
+    console.log({ indexer, char: order[i].valueOf() });
+    item.set(order[i], order.length - i);
+  }
+  const sortedCharacters = Array.from(s).sort((a, b) => {
+    const valueA = item.has(a) ? item.get(a) : 0;
+    const valueB = item.has(b) ? item.get(b) : 0;
+    return valueB - valueA;
+  }).join("");
+
+  console.log({ sortedCharacters });
+};
 function findDisappearedNumbers(nums) {
   const numSet = new Set(nums);
   const res = [];
@@ -1054,64 +1069,64 @@ function countOccurrences(paragraph, banned) {
   return ans;
 }
 
-var uniquePaths = function(m, n) {
-    // Create a 2D array to store the number of paths
-    const dp = Array(m).fill().map(() => Array(n).fill(0));
+var uniquePaths = function (m, n) {
+  // Create a 2D array to store the number of paths
+  const dp = Array(m)
+    .fill()
+    .map(() => Array(n).fill(0));
 
-    for (let i = 0; i < m; i++) {
-        dp[i][0] = 1;
-    }
-    for (let j = 0; j < n; j++) {
-        dp[0][j] = 1;
-    }
+  for (let i = 0; i < m; i++) {
+    dp[i][0] = 1;
+  }
+  for (let j = 0; j < n; j++) {
+    dp[0][j] = 1;
+  }
 
-    for (let i = 1; i < m; i++) {
-        for (let j = 1; j < n; j++) {
-            dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
-        }
+  for (let i = 1; i < m; i++) {
+    for (let j = 1; j < n; j++) {
+      dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
     }
-    return dp[m - 1][n - 1];
+  }
+  return dp[m - 1][n - 1];
 };
 
-var generateParenthesisMine = function(n) {
+var generateParenthesisMine = function (n) {
   const result = [];
   let opens = 0;
   let closes = 0;
-  let str = ""
-    
-  
-    
+  let str = "";
+
   return result;
 };
 
-var generateParenthesis = function(n) {
-    const result = [];
-    
-    // Helper function to generate parentheses recursively
-    function backtrack(current, open, close) {
-        // Base case: If the current string length is equal to 2 * n, add it to the result
-        if (current.length === 2 * n) {
-            result.push(current);
-            return;
-        }
-        
-        // Recursive case: Add an opening parenthesis if there are still open parentheses available
-        if (open < n) {
-            backtrack(current + '(', open + 1, close);
-        }
-        
-        // Recursive case: Add a closing parenthesis if there are still open parentheses that haven't been closed yet
-        if (close < open) {
-            backtrack(current + ')', open, close + 1);
-        }
+var generateParenthesis = function (n) {
+  const result = [];
+
+  // Helper function to generate parentheses recursively
+  function backtrack(current, open, close) {
+    // Base case: If the current string length is equal to 2 * n, add it to the result
+    if (current.length === 2 * n) {
+      result.push(current);
+      return;
     }
-    
-    // Start the recursive process with an empty string and counts of open and close parentheses
-  backtrack('', 0, 0);
-  
-  console.log({ result, length:result.length });
-    
-    return result;
+
+    // Recursive case: Add an opening parenthesis if there are still open parentheses available
+    if (open < n) {
+      backtrack(current + "(", open + 1, close);
+    }
+
+    // Recursive case: Add a closing parenthesis if there are still open parentheses that haven't been closed yet
+    if (close < open) {
+      backtrack(current + ")", open, close + 1);
+    }
+  }
+
+  // Start the recursive process with an empty string and counts of open and close parentheses
+  backtrack("", 0, 0);
+
+  console.log({ result, length: result.length });
+
+  return result;
 };
 
 const main = () => {
@@ -1174,7 +1189,8 @@ const main = () => {
   // majorityElement([3, 2, 3]);
   // constructRectangle(4);
   // countOccurrences("a, a, a, a, b,b,b,c, c", ["a"]);
-  generateParenthesis(2)
+  // generateParenthesis(2)
+  customSortString("bcafg", "abcd");
 };
 
 main();
