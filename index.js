@@ -659,16 +659,15 @@ function intToRoman(num) {
 
 var customSortString = function (order, s) {
   const item = new Map();
-  for (let i = 0; i < order.length; i++) {
-    const indexer = order.indexOf(order[i])
-    console.log({ indexer, char: order[i].valueOf() });
-    item.set(order[i], order.length - i);
-  }
-  return Array.from(s).sort((a, b) => {
-    const valueA = item.has(a) ? item.get(a) : 0;
-    const valueB = item.has(b) ? item.get(b) : 0;
-    return valueB - valueA;
-  }).join("");
+  for (let i = 0; i < order.length; i++) item.set(order[i], order.length - i);
+
+  return Array.from(s)
+    .sort((a, b) => {
+      const valueA = item.has(a) ? item.get(a) : 0;
+      const valueB = item.has(b) ? item.get(b) : 0;
+      return valueB - valueA;
+    })
+    .join("");
 };
 function findDisappearedNumbers(nums) {
   const numSet = new Set(nums);
@@ -1127,6 +1126,65 @@ var generateParenthesis = function (n) {
   return result;
 };
 
+var removeZeroSumSublists = function (head) {
+  // Create a dummy node to handle cases where the original head is removed
+  let dummy = new ListNode(0);
+  dummy.next = head;
+
+  // Initialize a hash map to store running sums and their corresponding nodes
+  let map = new Map();
+  let sum = 0;
+  let current = dummy;
+
+  while (current != null) {
+    sum += current.val;
+
+    if (map.has(sum)) {
+      // If the same running sum is found again, remove the nodes between them
+      let prev = map.get(sum).next;
+      let tempSum = sum + prev.val;
+      while (prev !== current) {
+        tempSum += prev.next.val;
+        map.delete(tempSum);
+        prev = prev.next;
+      }
+      map.get(sum).next = current.next;
+    } else {
+      // Store the current running sum and its corresponding node
+      map.set(sum, current);
+    }
+
+    // Move to the next node
+    current = current.next;
+  }
+
+  return dummy.next;
+};
+
+var removeDuplicates2 = function (nums) {
+  let count = 0;
+  let map = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    const curr = map.get(nums[i]);
+    if (curr === 2) {
+      nums[i] = "_";
+    } else {
+      map.set(nums[i], (curr || 0) + 1);
+      count++;
+    }
+  }
+  nums.sort((a, b) => {
+    if (typeof a === "string") return 1;
+    if (typeof b === "string") return -1;
+    return a - b;
+  });
+
+  console.log({ count, nums, wordCount });
+
+  return count;
+};
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -1189,6 +1247,7 @@ const main = () => {
   // countOccurrences("a, a, a, a, b,b,b,c, c", ["a"]);
   // generateParenthesis(2)
   customSortString("bcafg", "abcd");
+  removeDuplicates2([0, 0, 1, 1, 1, 1, 2, 3, 3]);
 };
 
 main();
