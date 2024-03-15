@@ -1185,6 +1185,21 @@ var removeDuplicates2 = function (nums) {
   return count;
 };
 
+var checkIfPangram = function (sentence) {
+  if (sentence.length < 26) {
+    return false;
+  }
+
+  let charSet = new Set();
+  for (const char of sentence) {
+    if (char >= "a" && char <= "z") {
+      charSet.add(char);
+    }
+  }
+
+  return charSet.size === 26;
+};
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
