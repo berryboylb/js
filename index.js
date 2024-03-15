@@ -1200,6 +1200,25 @@ var checkIfPangram = function (sentence) {
   return charSet.size === 26;
 };
 
+function reverseArr(nums) {
+  const result = [];
+  for (let i = nums.length - 1; i >= 0; i--) {
+    result.push(nums[i]);
+  }
+  console.log({ result });
+  return result;
+}
+
+function reverseSwapArr(nums) {
+  for (let i = 0; i < nums.length / 2; i++) {
+    let temp = nums[i];
+    nums[i] = nums[nums.length - 1 - i];
+    nums[nums.length - 1 - i] = temp;
+  }
+  console.log({ nums });
+  return nums;
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -1261,8 +1280,10 @@ const main = () => {
   // constructRectangle(4);
   // countOccurrences("a, a, a, a, b,b,b,c, c", ["a"]);
   // generateParenthesis(2)
-  customSortString("bcafg", "abcd");
-  removeDuplicates2([0, 0, 1, 1, 1, 1, 2, 3, 3]);
+  // customSortString("bcafg", "abcd");
+  // removeDuplicates2([0, 0, 1, 1, 1, 1, 2, 3, 3]);
+  // reverseArr([2, 3, 5, 0])
+  reverseSwapArr([2, 3, 5, 0, 1]);
 };
 
 main();
