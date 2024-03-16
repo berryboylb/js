@@ -1219,6 +1219,23 @@ function reverseSwapArr(nums) {
   return nums;
 }
 
+function kth(arr, k) {
+  arr.sort((a, b) => a - b);
+  let kthbiggest = arr[arr.length - k];
+  console.log({ arr, kthbiggest });
+}
+
+var numJewelsInStones = function (jewels, stones) {
+  let count = 0
+  for (const stone of stones) {
+    if (jewels.includes(stone)) {
+      count++
+    }
+  }
+  console.log({ count });
+  return count
+};
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -1283,7 +1300,9 @@ const main = () => {
   // customSortString("bcafg", "abcd");
   // removeDuplicates2([0, 0, 1, 1, 1, 1, 2, 3, 3]);
   // reverseArr([2, 3, 5, 0])
-  reverseSwapArr([2, 3, 5, 0, 1]);
+  // reverseSwapArr([2, 3, 5, 0, 1]);
+  // kth([2, 3, 5, 0], 2);
+  numJewelsInStones("aA", "aAAbbbb");
 };
 
 main();
