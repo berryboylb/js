@@ -1226,15 +1226,32 @@ function kth(arr, k) {
 }
 
 var numJewelsInStones = function (jewels, stones) {
-  let count = 0
+  let count = 0;
   for (const stone of stones) {
     if (jewels.includes(stone)) {
-      count++
+      count++;
     }
   }
   console.log({ count });
-  return count
+  return count;
 };
+
+function test() {
+  let num = 4902301;
+  console.log(`$${num.toLocaleString()}`);
+}
+
+function closest(ts) {
+  let min = Number.POSITIVE_INFINITY;
+  for (const temp of ts) {
+    if (Math.abs(temp) < Math.min(min)) {
+      min = temp
+    }
+    console.log({temp})
+  }
+  console.log({  min });
+  return min;
+}
 
 const main = () => {
   // nearestVowel("babbb");
@@ -1302,7 +1319,9 @@ const main = () => {
   // reverseArr([2, 3, 5, 0])
   // reverseSwapArr([2, 3, 5, 0, 1]);
   // kth([2, 3, 5, 0], 2);
-  numJewelsInStones("aA", "aAAbbbb");
+  // numJewelsInStones("aA", "aAAbbbb");
+  // test();
+  closest([-4, 5, -2, 7, 0]);
 };
 
 main();
