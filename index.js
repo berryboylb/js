@@ -1245,12 +1245,27 @@ function closest(ts) {
   let min = Number.POSITIVE_INFINITY;
   for (const temp of ts) {
     if (Math.abs(temp) < Math.min(min)) {
-      min = temp
+      min = temp;
     }
-    console.log({temp})
+    console.log({ temp });
   }
-  console.log({  min });
+  console.log({ min });
   return min;
+}
+
+function numberOfEmployeesWhoMetTarget(hours, target) {
+  let count = 0;
+  for (const hour of hours) {
+    if (hour >= target) {
+      count++;
+    }
+  }
+  console.log({ count });
+  return count;
+}
+
+function numberOfEmployeesWhoMetTarget2(hours, target) {
+  return hours.reduce((acc, curr) => (curr >= target ? ++acc : acc), 0);
 }
 
 const main = () => {
@@ -1321,7 +1336,8 @@ const main = () => {
   // kth([2, 3, 5, 0], 2);
   // numJewelsInStones("aA", "aAAbbbb");
   // test();
-  closest([-4, 5, -2, 7, 0]);
+  // closest([-4, 5, -2, 7, 0]);
+  numberOfEmployeesWhoMetTarget([0, 1, 2, 3, 4], 2);
 };
 
 main();
