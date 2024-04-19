@@ -764,42 +764,6 @@ function countSegments(s) {
   return s.split(" ").filter((item) => item).length;
 }
 
-function islandPerimeter(grid) {
-  let perimeter = 0;
-  const land = 1;
-
-  // Iterate over all cells in the grid
-  for (let i = 0; i < grid.length; i++) {
-    for (let j = 0; j < grid[i].length; j++) {
-      // If the current cell is part of the island
-      if (grid[i][j] === land) {
-        // Increment the perimeter by 4
-        perimeter += 4;
-
-        // Check each neighboring cell
-        if (i > 0 && grid[i - 1][j] === land) {
-          // If the cell above is part of the island, decrement the perimeter by 1
-          perimeter -= 1;
-        }
-        if (j > 0 && grid[i][j - 1] === land) {
-          // If the cell to the left is part of the island, decrement the perimeter by 1
-          perimeter -= 1;
-        }
-        if (i < grid.length - 1 && grid[i + 1][j] === land) {
-          // If the cell below is part of the island, decrement the perimeter by 1
-          perimeter -= 1;
-        }
-        if (j < grid[i].length - 1 && grid[i][j + 1] === land) {
-          // If the cell to the right is part of the island, decrement the perimeter by 1
-          perimeter -= 1;
-        }
-      }
-    }
-  }
-
-  return perimeter;
-}
-
 function findContentChildrenn(g, s) {
   g.sort((a, b) => a - b);
   s.sort((a, b) => a - b);
@@ -1255,17 +1219,196 @@ function closest(ts) {
 
 function numberOfEmployeesWhoMetTarget(hours, target) {
   let count = 0;
-  for (const hour of hours) {
-    if (hour >= target) {
-      count++;
-    }
-  }
-  console.log({ count });
+  for (const hour of hours) if (hour >= target) count++;
   return count;
 }
 
 function numberOfEmployeesWhoMetTarget2(hours, target) {
   return hours.reduce((acc, curr) => (curr >= target ? ++acc : acc), 0);
+}
+
+function generateApiKey(length = 20) {
+  const charset =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/";
+  let apiKey = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charset.length);
+    apiKey += charset[randomIndex];
+  }
+  console.log({ apiKey });
+
+  return apiKey;
+}
+
+const genAPIKey = () => {
+  //create a base-36 string that contains 30 chars in a-z,0-9
+  const key = [...Array(20)]
+    .map((e) => {
+      const num = Math.random() * 36;
+      console.log({ num });
+      return Math.floor(num).toString(36);
+    })
+    .join("");
+  console.log({ key, res: Math.random() * 36 });
+};
+
+function test() {
+  const num = 29;
+  console.log(`es:${num.toString(36)}`);
+}
+function islandPerimeter(grid) {
+  let perimeter = 0;
+  const land = 1;
+
+  // Iterate over all cells in the grid
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      // If the current cell is part of the island
+      if (grid[i][j] === land) {
+        // Increment the perimeter by 4
+        perimeter += 4;
+
+        // Check each neighboring cell
+        if (i > 0 && grid[i - 1][j] === land) {
+          // If the cell above is part of the island, decrement the perimeter by 1
+          perimeter -= 1;
+        }
+        if (j > 0 && grid[i][j - 1] === land) {
+          // If the cell to the left is part of the island, decrement the perimeter by 1
+          perimeter -= 1;
+        }
+        if (i < grid.length - 1 && grid[i + 1][j] === land) {
+          // If the cell below is part of the island, decrement the perimeter by 1
+          perimeter -= 1;
+        }
+        if (j < grid[i].length - 1 && grid[i][j + 1] === land) {
+          // If the cell to the right is part of the island, decrement the perimeter by 1
+          perimeter -= 1;
+        }
+      }
+    }
+  }
+
+  return perimeter;
+}
+
+function numIslandsdfs(grid) {
+  if (!grid || grid.length === 0) {
+    return 0;
+  }
+
+  const numRows = grid.length;
+  const numCols = grid[0].length;
+  let count = 0;
+
+  // Helper function for DFS traversal
+  function dfs(row, col) {
+    if (
+      row < 0 ||
+      row >= numRows ||
+      col < 0 ||
+      col >= numCols ||
+      grid[row][col] === "0"
+    ) {
+      return;
+    }
+
+    // Mark the current cell as visited
+    grid[row][col] = "0";
+
+    // Explore adjacent cells
+    dfs(row + 1, col); // Down
+    dfs(row - 1, col); // Up
+    dfs(row, col + 1); // Right
+    dfs(row, col - 1); // Left
+  }
+
+  // Main DFS traversal loop
+  for (let i = 0; i < numRows; i++) {
+    for (let j = 0; j < numCols; j++) {
+      if (grid[i][j] === "1") {
+        count++;
+        dfs(i, j); // Explore the island and mark all its cells as visited
+      }
+    }
+  }
+
+  return count;
+}
+
+function numIslandsbfs(grid) {
+  if (!grid || grid.length === 0) {
+    return 0;
+  }
+
+  const numRows = grid.length;
+  const numCols = grid[0].length;
+  let count = 0;
+
+  // Helper function for BFS traversal
+  function bfs(row, col) {
+    const queue = [];
+    queue.push([row, col]);
+
+    while (queue.length > 0) {
+      const [r, c] = queue.shift();
+
+      if (
+        r < 0 ||
+        r >= numRows ||
+        c < 0 ||
+        c >= numCols ||
+        grid[r][c] === "0"
+      ) {
+        continue;
+      }
+
+      grid[r][c] = "0"; // Mark the current cell as visited
+
+      // Explore adjacent cells
+      queue.push([r + 1, c]); // Down
+      queue.push([r - 1, c]); // Up
+      queue.push([r, c + 1]); // Right
+      queue.push([r, c - 1]); // Left
+    }
+  }
+
+  // Main BFS traversal loop
+  for (let i = 0; i < numRows; i++) {
+    for (let j = 0; j < numCols; j++) {
+      if (grid[i][j] === "1") {
+        count++;
+        bfs(i, j); // Explore the island and mark all its cells as visited
+      }
+    }
+  }
+
+  return count;
+}
+
+
+function numIslands(grid) {
+  let count = 0;
+  const land = "1";
+
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      if (grid[i][j] === land) {
+        count++;
+        if (j > 0 && grid[i][j - 1] === land) {
+          count--;
+        }
+
+        if (i > 0 && grid[i - 1][j] === land) {
+          count--;
+        }
+      }
+    }
+  }
+
+  console.log({ count });
+  return count;
 }
 
 const main = () => {
@@ -1337,7 +1480,16 @@ const main = () => {
   // numJewelsInStones("aA", "aAAbbbb");
   // test();
   // closest([-4, 5, -2, 7, 0]);
-  numberOfEmployeesWhoMetTarget([0, 1, 2, 3, 4], 2);
+  // numberOfEmployeesWhoMetTarget([0, 1, 2, 3, 4], 2);
+  // generateApiKey();
+  // genAPIKey();
+  // test();
+  numIslands([
+    ["1", "1", "0", "0", "0"],
+    ["1", "1", "0", "0", "0"],
+    ["0", "0", "1", "0", "0"],
+    ["0", "0", "0", "1", "1"],
+  ]);
 };
 
 main();
