@@ -1387,7 +1387,6 @@ function numIslandsbfs(grid) {
   return count;
 }
 
-
 function numIslands(grid) {
   let count = 0;
   const land = "1";
@@ -1407,6 +1406,25 @@ function numIslands(grid) {
     }
   }
 
+  console.log({ count });
+  return count;
+}
+
+function specialCharacters(word) {
+  let count = 0;
+  const letters = new Set([...word]);
+  const checked = new Set();
+  for (const letter of letters) {
+    if (!checked.has(letter)) {
+      const lower = letter.toLowerCase();
+      const upper = letter.toUpperCase();
+      if (letters.has(lower) && letters.has(upper)) {
+        checked.add(lower);
+        checked.add(upper);
+        count++;
+      }
+    }
+  }
   console.log({ count });
   return count;
 }
@@ -1484,12 +1502,13 @@ const main = () => {
   // generateApiKey();
   // genAPIKey();
   // test();
-  numIslands([
-    ["1", "1", "0", "0", "0"],
-    ["1", "1", "0", "0", "0"],
-    ["0", "0", "1", "0", "0"],
-    ["0", "0", "0", "1", "1"],
-  ]);
+  // numIslands([
+  //   ["1", "1", "0", "0", "0"],
+  //   ["1", "1", "0", "0", "0"],
+  //   ["0", "0", "1", "0", "0"],
+  //   ["0", "0", "0", "1", "1"],
+  // ]);
+  specialCharacters("abBCab");
 };
 
 main();
