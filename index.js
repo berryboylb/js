@@ -1425,8 +1425,16 @@ function specialCharacters(word) {
       }
     }
   }
-  console.log({ count });
   return count;
+}
+
+function accountBalanceAfterPurchase(purchaseAmount) {
+  const strAmount = purchaseAmount.toString();
+  const lastDigit = Number(strAmount[strAmount.length - 1]);
+  if (1 <= lastDigit && lastDigit <= 4)
+    purchaseAmount = Math.round(purchaseAmount / 10) * 10;
+  else purchaseAmount = Math.ceil(purchaseAmount / 10) * 10;
+  return 100 - purchaseAmount;
 }
 
 const main = () => {
@@ -1508,7 +1516,8 @@ const main = () => {
   //   ["0", "0", "1", "0", "0"],
   //   ["0", "0", "0", "1", "1"],
   // ]);
-  specialCharacters("abBCab");
+  // specialCharacters("abBCab");
+  accountBalanceAfterPurchase(57);
 };
 
 main();
