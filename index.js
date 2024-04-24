@@ -1442,8 +1442,6 @@ function finalString(s) {
   for (const char of s)
     if (char === "i") res = [...res].reverse().join("");
     else res += char;
-
-  console.log({ res });
   return res;
 }
 
