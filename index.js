@@ -1437,6 +1437,23 @@ function accountBalanceAfterPurchase(purchaseAmount) {
   return 100 - purchaseAmount;
 }
 
+function finalString(s) {
+  let res = "";
+  for (const char of s)
+    if (char === "i") res = [...res].reverse().join("");
+    else res += char;
+
+  console.log({ res });
+  return res;
+}
+
+function finalString2(s) {
+  return [...s].reduce(
+    (acc, curr) => (curr === "i" ? [...acc].reverse().join("") : (acc += curr)),
+    ""
+  );
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -1517,7 +1534,8 @@ const main = () => {
   //   ["0", "0", "0", "1", "1"],
   // ]);
   // specialCharacters("abBCab");
-  accountBalanceAfterPurchase(57);
+  // accountBalanceAfterPurchase(57);
+  finalString2("poiinter");
 };
 
 main();
