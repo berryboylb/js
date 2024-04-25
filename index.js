@@ -1452,6 +1452,20 @@ function finalString2(s) {
   );
 }
 
+function countPairs(nums, target) {
+  let result = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] + nums[j] < target) {
+        result++
+      }
+    }
+  }
+  console.log({ result });
+  return result;
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -1533,7 +1547,9 @@ const main = () => {
   // ]);
   // specialCharacters("abBCab");
   // accountBalanceAfterPurchase(57);
-  finalString2("poiinter");
+  // finalString2("poiinter");
+  // maxSum([51, 71, 17, 24, 42])
+  countPairs([-6, 2, 5, -2, -7, -1, 3], -2);
 };
 
 main();
