@@ -1464,6 +1464,16 @@ function countPairs(nums, target) {
   return result;
 }
 
+function isAcronym(words, s) {
+  let acronym = "";
+  for (const word of words) acronym += word[0];
+  return acronym === s;
+}
+
+function isAcronym2(words, s) {
+  return s === words.reduce((acronym, word) => (acronym += word[0]), "");
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -1547,7 +1557,8 @@ const main = () => {
   // accountBalanceAfterPurchase(57);
   // finalString2("poiinter");
   // maxSum([51, 71, 17, 24, 42])
-  countPairs([-6, 2, 5, -2, -7, -1, 3], -2);
+  // countPairs([-6, 2, 5, -2, -7, -1, 3], -2);
+  isAcronym2(["never", "gonna", "give", "up", "on", "you"], "ngguoy");
 };
 
 main();
