@@ -1474,6 +1474,16 @@ function isAcronym2(words, s) {
   return s === words.reduce((acronym, word) => (acronym += word[0]), "");
 }
 
+function furthestDistanceFromOrigin(s) {
+  let diff = 0;
+  let spaces = 0;
+  for (const char of s)
+    if (char === "_") spaces++;
+    else diff += char === "L" ? -1 : 1;
+  console.log({ sum: Math.abs(diff) + spaces, s: s.length, diff, spaces });
+  return Math.abs(diff) + spaces;
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -1558,7 +1568,8 @@ const main = () => {
   // finalString2("poiinter");
   // maxSum([51, 71, 17, 24, 42])
   // countPairs([-6, 2, 5, -2, -7, -1, 3], -2);
-  isAcronym2(["never", "gonna", "give", "up", "on", "you"], "ngguoy");
+  // isAcronym2(["never", "gonna", "give", "up", "on", "you"], "ngguoy");
+   furthestDistanceFromOrigin("_R__LL_");
 };
 
 main();
