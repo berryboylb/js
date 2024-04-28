@@ -1484,6 +1484,22 @@ function furthestDistanceFromOrigin(s) {
   return Math.abs(diff) + spaces;
 }
 
+function canBeEqual(s1, s2) {
+  // Check for (length - 2) chars
+  for (let indexI = 0; indexI < s1.length - 2; indexI++) {
+    if (s1[indexI] === s2[indexI]) continue; // If the chars are equal check for next;
+    if (s1[indexI] !== s2[indexI + 2]) return false;
+  }
+
+  // Last 2 chars (s1 = "cmpr" and s2 = "rmcp"), (s1 ="bnxw" s2 ="bwxn")
+  for (let indexI = s1.length - 1; indexI > s1.length - 3; indexI--) {
+    if (s1[indexI] === s2[indexI]) continue; // If the chars are equal check for next;
+    if (s1[indexI] !== s2[indexI - 2]) return false;
+  }
+
+  return true;
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -1569,7 +1585,8 @@ const main = () => {
   // maxSum([51, 71, 17, 24, 42])
   // countPairs([-6, 2, 5, -2, -7, -1, 3], -2);
   // isAcronym2(["never", "gonna", "give", "up", "on", "you"], "ngguoy");
-   furthestDistanceFromOrigin("_R__LL_");
+  // furthestDistanceFromOrigin("_R__LL_");
+  canBeEqual("abcd", "cdab");
 };
 
 main();
