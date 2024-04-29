@@ -1500,6 +1500,24 @@ function canBeEqual(s1, s2) {
   return true;
 }
 
+function countSymmetricIntegers(low, high) {
+  let count = 0;
+  for (let i = low; i <= high; i++) {
+    const num = String(i);
+    if (num.length % 2 === 0) {
+      const arr = [...num];
+      let left = 0;
+      let right = 0;
+      for (let j = 0; j < num.length; j++) {
+        if (j >= num.length / 2) right += Number(arr[j]);
+        else left += Number(arr[j]);
+      }
+      if (left === right) count++;
+    }
+  }
+  console.log({ count });
+}
+
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -1586,7 +1604,8 @@ const main = () => {
   // countPairs([-6, 2, 5, -2, -7, -1, 3], -2);
   // isAcronym2(["never", "gonna", "give", "up", "on", "you"], "ngguoy");
   // furthestDistanceFromOrigin("_R__LL_");
-  canBeEqual("abcd", "cdab");
+  // canBeEqual("abcd", "cdab");
+  countSymmetricIntegers(1200, 1230);
 };
 
 main();
