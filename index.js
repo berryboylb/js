@@ -1515,8 +1515,25 @@ function countSymmetricIntegers(low, high) {
       if (left === right) count++;
     }
   }
-  console.log({ count });
+  return count;
 }
+
+
+
+var numberOfPoints = function(nums) {
+    const points = new Set();
+
+    // Iterate over each car's coordinates
+    for (const [start, end] of nums) {
+        // Mark all points covered by the current car
+        for (let i = start; i <= end; i++) {
+            points.add(i);
+        }
+    }
+
+    // Return the count of unique covered points
+    return points.size;
+};
 
 const main = () => {
   // nearestVowel("babbb");
