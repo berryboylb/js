@@ -1518,22 +1518,30 @@ function countSymmetricIntegers(low, high) {
   return count;
 }
 
+var numberOfPoints = function (nums) {
+  const points = new Set();
 
-
-var numberOfPoints = function(nums) {
-    const points = new Set();
-
-    // Iterate over each car's coordinates
-    for (const [start, end] of nums) {
-        // Mark all points covered by the current car
-        for (let i = start; i <= end; i++) {
-            points.add(i);
-        }
+  // Iterate over each car's coordinates
+  for (const [start, end] of nums) {
+    // Mark all points covered by the current car
+    for (let i = start; i <= end; i++) {
+      points.add(i);
     }
+  }
 
-    // Return the count of unique covered points
-    return points.size;
+  // Return the count of unique covered points
+  return points.size;
 };
+
+function sumIndicesWithKSetBits(nums, k) {
+  let result = 0;
+  for (let i = 0; i < nums.length; i++) {
+    let count = 0;
+    for (const char of i.toString(2)) if (Number(char) === 1) count++;
+    if (count === k) result += nums[i];
+  }
+  return result;
+}
 
 const main = () => {
   // nearestVowel("babbb");
@@ -1622,7 +1630,8 @@ const main = () => {
   // isAcronym2(["never", "gonna", "give", "up", "on", "you"], "ngguoy");
   // furthestDistanceFromOrigin("_R__LL_");
   // canBeEqual("abcd", "cdab");
-  countSymmetricIntegers(1200, 1230);
+  // countSymmetricIntegers(1200, 1230);
+  sumIndicesWithKSetBits([5, 10, 1, 5, 2], 1);
 };
 
 main();
