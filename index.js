@@ -1543,6 +1543,24 @@ function sumIndicesWithKSetBits(nums, k) {
   return result;
 }
 
+function minOperations(nums, k) {
+  let result = 0;
+  const set = new Set();
+  for (let i = 1; i <= k; i++) set.add(i);
+  for (let i = nums.length - 1; i >= 0 && set.size > 0; i--) {
+    set.delete(nums[i]);
+    result++;
+  }
+  console.log({ result })
+  return result;
+}
+
+// while (index >= 0) {
+  //   set.delete(index);
+  //   result++;
+  //   index--;
+  //   if (set.size === 0) break;
+  // }
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -1631,7 +1649,8 @@ const main = () => {
   // furthestDistanceFromOrigin("_R__LL_");
   // canBeEqual("abcd", "cdab");
   // countSymmetricIntegers(1200, 1230);
-  sumIndicesWithKSetBits([5, 10, 1, 5, 2], 1);
+  // sumIndicesWithKSetBits([5, 10, 1, 5, 2], 1);
+  minOperations([1, 2], 1);
 };
 
 main();
