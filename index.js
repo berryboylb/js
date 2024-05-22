@@ -1551,16 +1551,23 @@ function minOperations(nums, k) {
     set.delete(nums[i]);
     result++;
   }
-  console.log({ result })
+  console.log({ result });
   return result;
 }
 
+function findWordsContaining(words, x) {
+  let res = [];
+  for (let i = 0; i < words.length; i++) 
+    if (new RegExp(x).test(words[i])) res.push(i);
+  return res;
+}
+
 // while (index >= 0) {
-  //   set.delete(index);
-  //   result++;
-  //   index--;
-  //   if (set.size === 0) break;
-  // }
+//   set.delete(index);
+//   result++;
+//   index--;
+//   if (set.size === 0) break;
+// }
 const main = () => {
   // nearestVowel("babbb");
   // nearestVowel("abcdabcd");
@@ -1650,7 +1657,8 @@ const main = () => {
   // canBeEqual("abcd", "cdab");
   // countSymmetricIntegers(1200, 1230);
   // sumIndicesWithKSetBits([5, 10, 1, 5, 2], 1);
-  minOperations([1, 2], 1);
+  // minOperations([1, 2], 1);
+  findWordsContaining(["abc", "bcd", "aaaa", "cbc"], "a");
 };
 
 main();
